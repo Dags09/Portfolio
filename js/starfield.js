@@ -2,7 +2,8 @@
     const canvas = document.getElementById("starfield");
     const ctx = canvas.getContext("2d");
 
-    let width, height, stars, shootingStar;
+    let width, height, stars;
+    let shootingStars = [];
     const STAR_COUNT = 220;
     const reduceMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
@@ -38,32 +39,35 @@
             ctx.fill();
         }
 
-        if (shootingStar && shootingStar.active) {
-            drawShootingStar();
+        shootingStars = shootingStars.filter((s) => s.life <= s.maxLife);
+        for (const s of shootingStars) {
+            drawShootingStar(s);
         }
     }
 
     function fireShootingStar() {
         if (reduceMotion) return;
-        shootingStar = {
-            x: width * (0.15 + Math.random() * 0.2),
-            y: height * (0.1 + Math.random() * 0.15),
-            length: 140,
-            angle: Math.PI / 5,
-            speed: 11,
+        shootingStars.push({
+            x: width * (0.05 + Math.random() * 0.7),
+            y: height * (0.05 + Math.random() * 0.35),
+            length: 100 + Math.random() * 70,
+            angle: Math.PI / 6 + Math.random() * (Math.PI / 10),
+            speed: 9 + Math.random() * 5,
             life: 0,
-            maxLife: 60,
-            active: true,
-        };
+            maxLife: 55,
+        });
     }
 
-    function drawShootingStar() {
-        const s = shootingStar;
+    function drawShootingStar(s) {
         const dx = Math.cos(s.angle) * s.length;
         const dy = Math.sin(s.angle) * s.length;
 
+        const fadeIn = Math.min(1, s.life / 8);
+        const fadeOut = Math.min(1, (s.maxLife - s.life) / 12);
+        const opacity = Math.max(0, Math.min(fadeIn, fadeOut));
+
         const gradient = ctx.createLinearGradient(s.x, s.y, s.x - dx, s.y - dy);
-        gradient.addColorStop(0, "rgba(244, 201, 93, 0.95)");
+        gradient.addColorStop(0, `rgba(244, 201, 93, ${0.95 * opacity})`);
         gradient.addColorStop(1, "rgba(244, 201, 93, 0)");
 
         ctx.strokeStyle = gradient;
@@ -76,10 +80,21 @@
         s.x += Math.cos(s.angle) * s.speed;
         s.y += Math.sin(s.angle) * s.speed;
         s.life++;
+    }
 
-        if (s.life > s.maxLife) {
-            shootingStar.active = false;
-        }
+    function scheduleNextShootingStar() {
+        if (reduceMotion) return;
+        const delay = 4000 + Math.random() * 6000;
+        setTimeout(() => {
+            const isBurst = Math.random() > 0.75;
+            const count = isBurst ? 2 + Math.floor(Math.random() * 4) : 1;
+
+            for (let i = 0; i < count; i++) {
+                setTimeout(fireShootingStar, i * (80 + Math.random() * 150));
+            }
+
+            scheduleNextShootingStar();
+        }, delay);
     }
 
     function loop(time) {
@@ -98,5 +113,7 @@
 
     window.addEventListener("DOMContentLoaded", () => {
         setTimeout(fireShootingStar, 1300);
+
+        setTimeout(scheduleNextShootingStar, 4000);
     });
 })();

@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Prevent the browser from restoring the previous scroll position on
+    // refresh — the intro should always start fresh at the top of the page.
+    if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+
     const intro = document.getElementById("intro");
     const enterBtn = document.getElementById("enter-btn");
     const heroInner = document.querySelector(".hero-inner");
@@ -10,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         intro.classList.add("intro-exit");
         document.body.style.overflow = "";
+        document.body.classList.remove("intro-active");
 
         setTimeout(() => {
             heroInner.classList.add("hero-visible");

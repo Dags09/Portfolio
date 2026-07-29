@@ -16,11 +16,9 @@
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/animations.css" />
     </head>
-    <body>
-        <!-- Starfield canvas sits behind everything -->
+    <body class="intro-active">
         <canvas id="starfield"></canvas>
 
-        <!-- INTRO SCREEN -->
         <section id="intro">
             <p class="intro-eyebrow">— welcome —</p>
             <h1 class="intro-title">
@@ -36,7 +34,6 @@
             </button>
         </section>
 
-        <!-- MAIN CONTENT -->
         <main id="main-content">
             <section id="hero">
                 <div class="hero-inner">
@@ -88,22 +85,276 @@
                         </p>
 
                         <ul class="skills-list">
-                            <li>React</li>
-                            <li>TypeScript</li>
-                            <li>JavaScript</li>
-                            <li>Node.js</li>
-                            <li>Express</li>
-                            <li>MongoDB</li>
-                            <li>Tailwind CSS</li>
-                            <li>Git</li>
+                            <li class="skill-item">
+                                <div class="skill-top">
+                                    <span class="skill-name">JavaScript</span>
+                                    <span class="skill-level-label"
+                                        >Intermediate</span
+                                    >
+                                </div>
+                                <div class="skill-meter">
+                                    <div
+                                        class="skill-meter-fill"
+                                        style="--level: 65%"
+                                    ></div>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-top">
+                                    <span class="skill-name">React</span>
+                                    <span class="skill-level-label"
+                                        >Intermediate</span
+                                    >
+                                </div>
+                                <div class="skill-meter">
+                                    <div
+                                        class="skill-meter-fill"
+                                        style="--level: 65%"
+                                    ></div>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-top">
+                                    <span class="skill-name">Node.js</span>
+                                    <span class="skill-level-label"
+                                        >Intermediate</span
+                                    >
+                                </div>
+                                <div class="skill-meter">
+                                    <div
+                                        class="skill-meter-fill"
+                                        style="--level: 65%"
+                                    ></div>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-top">
+                                    <span class="skill-name">MongoDB</span>
+                                    <span class="skill-level-label"
+                                        >Intermediate</span
+                                    >
+                                </div>
+                                <div class="skill-meter">
+                                    <div
+                                        class="skill-meter-fill"
+                                        style="--level: 65%"
+                                    ></div>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-top">
+                                    <span class="skill-name">TypeScript</span>
+                                    <span class="skill-level-label"
+                                        >Beginner</span
+                                    >
+                                </div>
+                                <div class="skill-meter">
+                                    <div
+                                        class="skill-meter-fill"
+                                        style="--level: 35%"
+                                    ></div>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-top">
+                                    <span class="skill-name">Express</span>
+                                    <span class="skill-level-label"
+                                        >Beginner</span
+                                    >
+                                </div>
+                                <div class="skill-meter">
+                                    <div
+                                        class="skill-meter-fill"
+                                        style="--level: 35%"
+                                    ></div>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-top">
+                                    <span class="skill-name">Tailwind CSS</span>
+                                    <span class="skill-level-label"
+                                        >Beginner</span
+                                    >
+                                </div>
+                                <div class="skill-meter">
+                                    <div
+                                        class="skill-meter-fill"
+                                        style="--level: 35%"
+                                    ></div>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-top">
+                                    <span class="skill-name">Git</span>
+                                    <span class="skill-level-label"
+                                        >Beginner</span
+                                    >
+                                </div>
+                                <div class="skill-meter">
+                                    <div
+                                        class="skill-meter-fill"
+                                        style="--level: 35%"
+                                    ></div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </section>
+
+            <section id="experience" class="reveal-on-scroll">
+                <div class="experience-inner">
+                    <p class="section-eyebrow">experience</p>
+                    <h3 class="experience-heading">Where I've worked</h3>
+
+                    <div class="experience-timeline">
+                        <div class="experience-item">
+                            <span class="experience-marker"></span>
+                            <div class="experience-content">
+                                <div class="experience-top">
+                                    <h4 class="experience-role">
+                                        Internship role
+                                    </h4>
+                                    <span class="experience-date"
+                                        >Month Year – Month Year</span
+                                    >
+                                </div>
+                                <p class="experience-company">
+                                    Company name · Internship
+                                </p>
+                                <p class="experience-desc">
+                                    A short description of your responsibilities
+                                    and what you learned during this internship
+                                    will go here.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="reveal-on-scroll">
+                <div class="projects-inner">
+                    <p class="section-eyebrow">projects</p>
+                    <h3 class="projects-heading">Selected work</h3>
+                    <p class="projects-subtext">
+                        A few things I've built — more on the way.
+                    </p>
+
+                    <div class="projects-grid">
+                        <article class="project-card">
+                            <div class="project-card-top">
+                                <span class="project-status">in progress</span>
+                            </div>
+                            <h4 class="project-title">Project title</h4>
+                            <p class="project-desc">
+                                A short description of what this project does
+                                and the problem it solves will go here.
+                            </p>
+                            <ul class="project-tags">
+                                <li>Tech</li>
+                                <li>Stack</li>
+                            </ul>
+                            <span class="project-link">view project →</span>
+                        </article>
+
+                        <article class="project-card">
+                            <div class="project-card-top">
+                                <span class="project-status">in progress</span>
+                            </div>
+                            <h4 class="project-title">Project title</h4>
+                            <p class="project-desc">
+                                A short description of what this project does
+                                and the problem it solves will go here.
+                            </p>
+                            <ul class="project-tags">
+                                <li>Tech</li>
+                                <li>Stack</li>
+                            </ul>
+                            <span class="project-link">view project →</span>
+                        </article>
+
+                        <article class="project-card">
+                            <div class="project-card-top">
+                                <span class="project-status">in progress</span>
+                            </div>
+                            <h4 class="project-title">Project title</h4>
+                            <p class="project-desc">
+                                A short description of what this project does
+                                and the problem it solves will go here.
+                            </p>
+                            <ul class="project-tags">
+                                <li>Tech</li>
+                                <li>Stack</li>
+                            </ul>
+                            <span class="project-link">view project →</span>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="reveal-on-scroll">
+                <div class="contact-inner">
+                    <div class="contact-intro">
+                        <p class="section-eyebrow">contact</p>
+                        <h3 class="contact-heading">Let's talk</h3>
+                        <p class="contact-text">
+                            Have a project in mind or just want to say hi? My
+                            inbox is open.
+                        </p>
+                        <a href="mailto:hello@jewelle.dev" class="contact-email"
+                            >hello@jewelle.dev</a
+                        >
+                    </div>
+
+                    <form id="contact-form" class="contact-form" novalidate>
+                        <div class="form-field">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required />
+                        </div>
+                        <div class="form-field">
+                            <label for="email">Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                required
+                            />
+                        </div>
+                        <div class="form-field">
+                            <label for="message">Message</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="5"
+                                required
+                            ></textarea>
+                        </div>
+                        <button type="submit" class="contact-submit">
+                            send message
+                        </button>
+                        <p
+                            class="contact-form-note"
+                            id="contact-form-note"
+                            role="status"
+                            aria-live="polite"
+                        ></p>
+                    </form>
+                </div>
+            </section>
         </main>
+
+        <footer id="site-footer">
+            <p>
+                © <span id="footer-year"></span> Jewelle. Handcrafted, star by
+                star.
+            </p>
+            <a href="#intro" class="back-to-top">back to top ↑</a>
+        </footer>
 
         <script src="js/starfield.js" defer></script>
         <script src="js/scrollEffects.js" defer></script>
+        <script src="js/contactForm.js" defer></script>
         <script src="js/main.js" defer></script>
     </body>
 </html>
