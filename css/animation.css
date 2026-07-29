@@ -1,0 +1,44 @@
+/* Fade + rise, used for staggered intro text */
+@keyframes fadeRiseIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.intro-eyebrow {
+    animation: fadeRiseIn 0.8s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.intro-line:nth-of-type(1) {
+    animation: fadeRiseIn 0.9s ease forwards;
+    animation-delay: 0.7s;
+}
+
+.intro-name {
+    animation: fadeRiseIn 1s ease forwards;
+    animation-delay: 1.15s;
+}
+
+.intro-enter {
+    animation: fadeRiseIn 0.8s ease forwards;
+    animation-delay: 1.9s;
+}
+
+/* Whole intro screen fade-out when user clicks Enter */
+@keyframes introFadeOut {
+    from {
+        opacity: 1;
+        filter: blur(0px);
+    }
+    to {
+        opacity: 0;
+        filter: blur(6px);
+        visibility: hidden;
+    }
+}
