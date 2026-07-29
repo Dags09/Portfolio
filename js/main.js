@@ -1,23 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
     const intro = document.getElementById("intro");
     const enterBtn = document.getElementById("enter-btn");
-    const mainContent = document.getElementById("main-content");
+    const heroInner = document.querySelector(".hero-inner");
+    let dismissed = false;
 
     function dismissIntro() {
+        if (dismissed) return;
+        dismissed = true;
+
         intro.classList.add("intro-exit");
-        document.body.style.overflow = ""; // release scroll lock
-        // Remove from tab order / DOM flow after the fade-out finishes
+        document.body.style.overflow = "";
+
+        setTimeout(() => {
+            heroInner.classList.add("hero-visible");
+        }, 400);
+
         setTimeout(() => {
             intro.style.display = "none";
         }, 900);
     }
 
-    // Lock scroll while intro is showing
     document.body.style.overflow = "hidden";
 
     enterBtn.addEventListener("click", dismissIntro);
 
-    // Also allow pressing Enter/Space to dismiss, and scrolling down
     window.addEventListener("keydown", (e) => {
         if (
             (e.key === "Enter" || e.key === " ") &&

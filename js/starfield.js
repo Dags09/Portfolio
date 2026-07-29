@@ -43,14 +43,13 @@
         }
     }
 
-    // Signature moment: one shooting star streaks across during the intro text reveal
     function fireShootingStar() {
         if (reduceMotion) return;
         shootingStar = {
             x: width * (0.15 + Math.random() * 0.2),
             y: height * (0.1 + Math.random() * 0.15),
             length: 140,
-            angle: Math.PI / 5, // downward-right streak
+            angle: Math.PI / 5,
             speed: 11,
             life: 0,
             maxLife: 60,
@@ -97,7 +96,6 @@
     createStars();
     requestAnimationFrame(loop);
 
-    // Fire the shooting star once, timed to land right as the name fades in (~1.15s delay in CSS)
     window.addEventListener("DOMContentLoaded", () => {
         setTimeout(fireShootingStar, 1300);
     });
