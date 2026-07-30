@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const intro = document.getElementById("intro");
     const enterBtn = document.getElementById("enter-btn");
     const heroInner = document.querySelector(".hero-inner");
+    const backToTopLink = document.querySelector(".back-to-top");
     let dismissed = false;
 
     function dismissIntro() {
@@ -34,6 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Lock scroll while intro is showing (main content is already hidden
     // via the .intro-active class set directly in the HTML)
     document.body.style.overflow = "hidden";
+
+    if (backToTopLink) {
+        backToTopLink.addEventListener("click", (event) => {
+            event.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
 
     enterBtn.addEventListener("click", dismissIntro);
 
