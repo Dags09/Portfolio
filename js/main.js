@@ -62,4 +62,51 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         { passive: true, once: true },
     );
+
+    const imageModal = document.getElementById("image-modal");
+    const modalBackdrop = imageModal?.querySelector(".image-modal-backdrop");
+    const modalClose = imageModal?.querySelector(".image-modal-close");
+    const modalImage = imageModal?.querySelector(".image-modal-img");
+    const modalCaption = imageModal?.querySelector(".image-modal-caption");
+
+    function closeImageModal() {
+        if (!imageModal) return;
+        imageModal.classList.remove("open");
+        imageModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        modalImage.src = "";
+        modalImage.alt = "";
+        modalCaption.textContent = "";
+    }
+
+    function openImageModal(src, title) {
+        if (!imageModal) return;
+        modalImage.src = src;
+        modalImage.alt = title || "Certificate preview";
+        modalCaption.textContent = title || "Certificate preview";
+        imageModal.classList.add("open");
+        imageModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+    }
+
+    document.querySelectorAll(".cert-card").forEach((card) => {
+        card.addEventListener("click", (event) => {
+            const imageSrc = card.dataset.image || card.getAttribute("href");
+            const imageTitle =
+                card.dataset.title ||
+                card.querySelector(".cert-name")?.textContent?.trim();
+            if (!imageSrc) return;
+            event.preventDefault();
+            openImageModal(imageSrc, imageTitle);
+        });
+    });
+
+    modalClose?.addEventListener("click", closeImageModal);
+    modalBackdrop?.addEventListener("click", closeImageModal);
+
+    window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && imageModal?.classList.contains("open")) {
+            closeImageModal();
+        }
+    });
 });
