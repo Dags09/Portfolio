@@ -1,3 +1,4 @@
+/* Fade + rise, used for staggered intro text */
 @keyframes fadeRiseIn {
     from {
         opacity: 0;
@@ -29,6 +30,7 @@
     animation-delay: 1.9s;
 }
 
+/* Whole intro screen fade-out when user clicks Enter */
 @keyframes introFadeOut {
     from {
         opacity: 1;

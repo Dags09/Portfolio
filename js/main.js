@@ -16,22 +16,28 @@ document.addEventListener("DOMContentLoaded", () => {
         dismissed = true;
 
         intro.classList.add("intro-exit");
-        document.body.style.overflow = "";
-        document.body.classList.remove("intro-active");
+        document.body.style.overflow = ""; // release scroll lock
+        document.body.classList.remove("intro-active"); // reveal main content
 
+        // Bring the hero in just before the intro finishes fading out,
+        // so the two overlap slightly instead of leaving a blank gap
         setTimeout(() => {
             heroInner.classList.add("hero-visible");
         }, 400);
 
+        // Remove intro from tab order / DOM flow after the fade-out finishes
         setTimeout(() => {
             intro.style.display = "none";
         }, 900);
     }
 
+    // Lock scroll while intro is showing (main content is already hidden
+    // via the .intro-active class set directly in the HTML)
     document.body.style.overflow = "hidden";
 
     enterBtn.addEventListener("click", dismissIntro);
 
+    // Also allow pressing Enter/Space to dismiss, and scrolling down
     window.addEventListener("keydown", (e) => {
         if (
             (e.key === "Enter" || e.key === " ") &&
