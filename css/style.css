@@ -149,9 +149,6 @@ body {
     z-index: 1;
 }
 
-/* Hide page content while intro is active, so it can never show through
-   or peek out from behind the intro (which is intentionally transparent
-   so the starfield canvas stays visible). Removed once intro is dismissed. */
 body.intro-active #main-content,
 body.intro-active #site-footer {
     visibility: hidden;
