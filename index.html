@@ -209,6 +209,20 @@
                             </li>
                             <li class="skill-item">
                                 <div class="skill-top">
+                                    <span class="skill-name">Python</span>
+                                    <span class="skill-level-label"
+                                        >Beginner</span
+                                    >
+                                </div>
+                                <div class="skill-meter">
+                                    <div
+                                        class="skill-meter-fill"
+                                        style="--level: 35%"
+                                    ></div>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-top">
                                     <span class="skill-name">Git</span>
                                     <span class="skill-level-label"
                                         >Beginner</span
@@ -356,12 +370,11 @@
                     <h3 class="certifications-heading">Certifications</h3>
 
                     <div class="certifications-grid">
-                        <a
+                        <button
+                            type="button"
                             class="cert-card"
-                            href="assets/images/DOST-CertificateOfCompletion.jpg"
                             data-image="assets/images/DOST-CertificateOfCompletion.jpg"
                             data-title="DOST Certificate of Completion"
-                            rel="noopener noreferrer"
                         >
                             <svg
                                 class="cert-badge"
@@ -379,14 +392,13 @@
                                 <p class="cert-issuer">DOST</p>
                                 <span class="cert-date">Month Year</span>
                             </div>
-                        </a>
+                        </button>
 
-                        <a
+                        <button
+                            type="button"
                             class="cert-card"
-                            href="assets/images/certificate-placeholder.jpg"
-                            data-image="assets/images/certificate-placeholder.jpg"
-                            data-title="Certificate preview"
-                            rel="noopener noreferrer"
+                            data-image="assets/images/BasePH-CertificateOfParticipation.png"
+                            data-title="Certificate of Participation"
                         >
                             <svg
                                 class="cert-badge"
@@ -398,41 +410,34 @@
                                 />
                             </svg>
                             <div class="cert-info">
-                                <h4 class="cert-name">Certificate name</h4>
-                                <p class="cert-issuer">Issuing organization</p>
-                                <span class="cert-date">Month Year</span>
+                                <h4 class="cert-name">
+                                    Certificate of Participation
+                                </h4>
+                                <p class="cert-issuer">BasePH</p>
+                                <span class="cert-date">November 2025</span>
                             </div>
-                        </a>
+                        </button>
                     </div>
 
                     <div
-                        id="image-modal"
-                        class="image-modal"
-                        aria-hidden="true"
+                        id="cert-preview"
+                        class="cert-preview"
+                        aria-live="polite"
                     >
-                        <div
-                            class="image-modal-backdrop"
-                            data-modal-close
-                        ></div>
-                        <div
-                            class="image-modal-content"
-                            role="dialog"
-                            aria-modal="true"
-                            aria-labelledby="image-modal-title"
+                        <button
+                            class="cert-preview-close"
+                            type="button"
+                            aria-label="Close preview"
                         >
-                            <button
-                                class="image-modal-close"
-                                type="button"
-                                aria-label="Close image viewer"
-                            >
-                                ×
-                            </button>
-                            <img class="image-modal-img" src="" alt="" />
-                            <p
-                                class="image-modal-caption"
-                                id="image-modal-title"
-                            ></p>
-                        </div>
+                            ×
+                        </button>
+                        <img
+                            class="cert-preview-img"
+                            src=""
+                            alt=""
+                            draggable="false"
+                        />
+                        <p class="cert-preview-caption"></p>
                     </div>
                 </div>
             </section>
@@ -498,18 +503,48 @@
 
                         <article class="project-card">
                             <div class="project-card-top">
-                                <span class="project-status">in progress</span>
+                                <span class="project-status">Finish</span>
                             </div>
-                            <h4 class="project-title">Project title</h4>
+                            <h4 class="project-title">
+                                AI Exercise Recommender
+                            </h4>
                             <p class="project-desc">
-                                A short description of what this project does
-                                and the problem it solves will go here.
+                                The AI Exercise Recommender is a web-based
+                                application designed to solve "workout
+                                paralysis" by providing data-driven exercise
+                                suggestions. The system leverages a Random
+                                Forest Classifier which used to predict the
+                                effectiveness of an exercise based on inputs
+                                such as Fitness Level, Body Part, Exercise Type,
+                                and Equipment.
                             </p>
                             <ul class="project-tags">
-                                <li>Tech</li>
-                                <li>Stack</li>
+                                <li>Python</li>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>Orange3</li>
+                                <li>Pandas</li>
+                                <li>NumPy</li>
+                                <li>Flask</li>
                             </ul>
-                            <span class="project-link">view project →</span>
+                            <div class="project-links-container">
+                                <a
+                                    class="project-link"
+                                    href="https://ai-exercise-recommender.onrender.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Demo Project →
+                                </a>
+                                <a
+                                    class="project-link"
+                                    href="https://github.com/Dags09/AI-Exercise-Recommender"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    View Code →
+                                </a>
+                            </div>
                         </article>
                     </div>
                 </div>
@@ -597,6 +632,7 @@
         <script src="js/starfield.js" defer></script>
         <script src="js/scrollEffects.js" defer></script>
         <script src="js/contactForm.js" defer></script>
+        <script src="js/imageModal.js" defer></script>
         <script src="js/main.js" defer></script>
     </body>
 </html>

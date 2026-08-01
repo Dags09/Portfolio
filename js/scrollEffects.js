@@ -1,3 +1,4 @@
+// js/scrollEffects.js
 document.addEventListener("DOMContentLoaded", () => {
     const reduceMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
