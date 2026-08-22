@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import React from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import type { ThreeElements } from "@react-three/fiber";
 import type { GLTF } from "three-stdlib";
 
@@ -34,10 +35,15 @@ export function Model(props: ThreeElements["group"]) {
     ) as unknown as GLTFResult;
     const { actions } = useAnimations(animations, group);
 
+    const [ready, setReady] = React.useState(false);
+
     React.useEffect(() => {
         actions["Take 001"]?.reset().play();
+        // trigger the intro animation once mounted
+        const t = setTimeout(() => setReady(true), 50);
         return () => {
             actions["Take 001"]?.stop();
+            clearTimeout(t);
         };
     }, [actions]);
 
@@ -53,8 +59,20 @@ export function Model(props: ThreeElements["group"]) {
         }
     }, [materials]);
 
+    useFrame((_, delta) => {
+        if (group.current) {
+            const target = ready ? 1 : 0;
+            const s = THREE.MathUtils.lerp(
+                group.current.scale.x,
+                target,
+                1.5 * delta,
+            );
+            group.current.scale.setScalar(s);
+        }
+    });
+
     return (
-        <group ref={group} {...props} dispose={null}>
+        <group ref={group} {...props} scale={0} dispose={null}>
             <group name="Sketchfab_Scene">
                 <group
                     name="Sketchfab_model"
