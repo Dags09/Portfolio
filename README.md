@@ -1,75 +1,97 @@
-# React + TypeScript + Vite
+# Jewelle Vincent D. Atienza — Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal developer portfolio built with React, TypeScript, and Tailwind CSS, featuring interactive 3D tech-stack icons, scroll-driven animations, and a working contact form.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React 19 + TypeScript** — component structure and typing
+- **Vite** — dev server and build tooling
+- **Tailwind CSS** — styling
+- **GSAP** (`gsap`, `@gsap/react`, `ScrollTrigger`) — scroll-triggered and text animations
+- **React Three Fiber** (`@react-three/fiber`, `@react-three/drei`, `@react-three/postprocessing`) — 3D hero model and interactive tech-stack logos
+- **FontAwesome** (`@fortawesome/react-fontawesome`, free-solid & free-brands icon sets) — UI and social icons
+- **react-icons** — tech logo icons in the marquee/logo slider
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+# install dependencies
+npm install
 
-## Expanding the ESLint configuration
+# start the dev server
+npm run dev
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# build for production
+npm run build
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+# preview the production build
+npm run preview
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Project Structure
 
 ```
+src/
+├── Components/
+│   ├── HeroModel/          # 3D hero scene (lights, particles, hologram model)
+│   ├── Models/TechLogos/   # Interactive 3D tech-stack icons
+│   ├── AnimatedCounter.tsx # GSAP-driven stat counters
+│   ├── Footer.tsx
+│   ├── GlowCard.tsx        # Mouse-tracking glow effect for experience cards
+│   ├── LogoSlider.tsx      # Infinite marquee of tech logos
+│   ├── NavBar.tsx
+│   ├── TitleHeader.tsx     # Shared section heading + eyebrow label
+│   └── button.tsx          # Reusable CTA button (circle-reveal hover effect)
+├── Sections/
+│   ├── Hero.tsx
+│   ├── ShowcaseSection.tsx     # Featured projects (#work)
+│   ├── FeatureCardSection.tsx  # Core abilities/strengths grid
+│   ├── ExperienceSection.tsx   # Work experience timeline (#experience)
+│   ├── TechStack.tsx           # 3D tech stack grid (#skills)
+│   ├── CertificationSection.tsx# Click-to-expand certification cards (#certification)
+│   └── ContactSection.tsx      # Contact form (#contact)
+├── utils/
+│   └── constants.ts        # All editable site content lives here
+├── index.css
+├── App.tsx
+└── main.tsx
+
+public/
+├── images/                 # Static images (certificates, reviewer photo, etc.)
+└── models/                 # .glb 3D models for the hero and tech-stack icons
+```
+
+## Editing Content
+
+Almost all editable content lives in **`src/utils/constants.ts`**:
+
+| Constant         | Controls                                                                                                  |
+| ---------------- | --------------------------------------------------------------------------------------------------------- |
+| `navLinks`       | Navbar links                                                                                              |
+| `words`          | Rotating word slider in the Hero                                                                          |
+| `counterItems`   | Stat counters (projects, hours, hackathons, etc.)                                                         |
+| `abilities`      | "What I bring" feature cards                                                                              |
+| `logos`          | Tech logos in the marquee slider                                                                          |
+| `experience`     | Work experience entries and reviewer info                                                                 |
+| `techStackIcons` | 3D models shown in the Skills section — each has its own `scale`, `position`, and `rotation` to fine-tune |
+| `certifications` | Certification cards — `title`, `issuer`, and `image` path                                                 |
+| `CONTACT_EMAIL`  | Where the contact form's `mailto:` link is sent                                                           |
+| `socialLinks`    | Footer social icons — `name`, `href`, and FontAwesome `icon`                                              |
+
+### Adding a certification
+
+1. Drop the certificate image into `public/images/`.
+2. Add an entry to `certifications` in `constants.ts`:
+    ```ts
+    {
+        icon: faCertificate,
+        title: "Certificate Title",
+        issuer: "Issuing Organization",
+        image: "/images/your-file.jpg",
+    },
+    ```
+
+### Adding a 3D tech-stack icon
+
+1. Drop the `.glb` file into `public/models/`.
+2. Add an entry to `techStackIcons` with a `modelPath`, and tune `scale`/`position`/`rotation` until it looks right in the viewport.
