@@ -5,11 +5,7 @@ export default function Footer() {
     return (
         <footer className="footer">
             <div className="footer-container">
-                <p className="md:!text-left">
-                    © {new Date().getFullYear()} Jewelle Vincent D. Atienza.
-                    <br />
-                    All rights reserved.
-                </p>
+                <p className="md:!text-right">Terms & Conditions</p>
 
                 <div className="socials">
                     {socialLinks.map(({ name, href, icons }) => (
@@ -32,7 +28,11 @@ export default function Footer() {
                         </a>
                     ))}
                 </div>
-                <p className="md:!text-right">Terms & Conditions</p>
+                <p className="md:!text-left">
+                    © {new Date().getFullYear()} Jewelle Vincent D. Atienza.
+                    <br />
+                    All rights reserved.
+                </p>
             </div>
         </footer>
     );
