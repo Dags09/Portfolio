@@ -1,4 +1,4 @@
-import { useGLTF, Environment, Float, OrbitControls } from "@react-three/drei";
+import { useGLTF, Float } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
 export interface TechModel {
@@ -16,21 +16,11 @@ interface TechIconProps {
 export default function TechIcon({ model }: TechIconProps) {
     const scene = useGLTF(model.modelPath);
 
-    // useEffect(() =>{
-    //     if(model.name === 'Interactive Developer'){
-    //         scene.scene.traverse((child) =>{
-    //             if(child.isMesh = new ThreeMFLoader.MeshStandardMaterial({ color:'white'}))
-    //         })
-    //     }
-    // },[scene])
-
     return (
-        <Canvas>
-            <ambientLight intensity={0.3} />
-            <directionalLight position={[5, 5, 5]} intensity={1} />
-            <Environment preset="city" />
-
-            <OrbitControls enableZoom={false} />
+        <Canvas dpr={[1, 1.5]} frameloop="always">
+            <ambientLight intensity={0.6} />
+            <directionalLight position={[5, 5, 5]} intensity={1.2} />
+            <directionalLight position={[-5, -3, -5]} intensity={0.4} />
 
             <Float speed={5.5} rotationIntensity={0.5} floatIntensity={0.9}>
                 <group

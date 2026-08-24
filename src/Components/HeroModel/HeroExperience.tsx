@@ -19,6 +19,11 @@ export default function HeroExperience() {
                 toneMapping: THREE.ACESFilmicToneMapping,
                 toneMappingExposure: 1.6,
             }}
+            onCreated={({ gl }) => {
+                gl.domElement.addEventListener("webglcontextlost", (e) => {
+                    e.preventDefault();
+                });
+            }}
         >
             <OrbitControls
                 enablePan={false}
