@@ -38,7 +38,7 @@ export default function HeroExperience() {
 
             <Suspense fallback={null}>
                 <group
-                    scale={isMobile ? 8 : 10}
+                    scale={isMobile ? 6 : 10}
                     position={
                         isMobile
                             ? [0, -3.2, 0]
