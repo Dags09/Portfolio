@@ -1,11 +1,6 @@
 import { Suspense, useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
-import {
-    Environment,
-    Float,
-    OrbitControls,
-    useTexture,
-} from "@react-three/drei";
+import { Environment, OrbitControls, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 import { innerOutline, outerOutline } from "./badgeShapeData";
 
@@ -100,38 +95,36 @@ function Badge({
     }, [size, depth]);
 
     return (
-        <Float speed={2} rotationIntensity={0.35} floatIntensity={0.5}>
-            <group>
-                {/* Back plate */}
-                <mesh geometry={backGeometry}>
-                    <meshStandardMaterial
-                        color={backColor}
-                        metalness={0.5}
-                        roughness={0.6}
-                        side={THREE.BackSide}
-                    />
-                </mesh>
+        <group>
+            {/* Back plate */}
+            <mesh geometry={backGeometry}>
+                <meshStandardMaterial
+                    color={backColor}
+                    metalness={0.5}
+                    roughness={0.6}
+                    side={THREE.BackSide}
+                />
+            </mesh>
 
-                {/* Gold rim (die-cut border, extruded) */}
-                <mesh geometry={rimGeometry} castShadow receiveShadow>
-                    <meshStandardMaterial
-                        color={rimColor}
-                        metalness={1}
-                        roughness={0.25}
-                    />
-                </mesh>
+            {/* Gold rim (die-cut border, extruded) */}
+            <mesh geometry={rimGeometry} castShadow receiveShadow>
+                <meshStandardMaterial
+                    color={rimColor}
+                    metalness={1}
+                    roughness={0.25}
+                />
+            </mesh>
 
-                {/* Photo face, flush with the front of the rim */}
-                <mesh geometry={photoGeometry} position={[0, 0, 0.005]}>
-                    <meshStandardMaterial
-                        map={texture}
-                        roughness={photoRoughness}
-                        metalness={photoMetalness}
-                        envMapIntensity={photoEnvMapIntensity}
-                    />
-                </mesh>
-            </group>
-        </Float>
+            {/* Photo face, flush with the front of the rim */}
+            <mesh geometry={photoGeometry} position={[0, 0, 0.005]}>
+                <meshStandardMaterial
+                    map={texture}
+                    roughness={photoRoughness}
+                    metalness={photoMetalness}
+                    envMapIntensity={photoEnvMapIntensity}
+                />
+            </mesh>
+        </group>
     );
 }
 
