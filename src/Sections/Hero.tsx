@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { words } from "../utils/constants";
 import Button from "../Components/button";
-import HeroExperience from "../Components/HeroModel/HeroExperience";
+import ShapedPinBadge from "../Components/Models/PinBadge/ShapedPinBadge";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import AnimatedCounter from "../Components/AnimatedCounter";
@@ -65,8 +65,12 @@ export default function Hero() {
                     </div>
                 </header>
                 <figure>
-                    <div className="hero-3d-layout">
-                        <HeroExperience />
+                    <div className="absolute xl:right-[10%] right-[20%] xl:top-[40%] top-[80%] -translate-y-1/2 xl:w-2xl w-[min(60vw,42rem)] aspect-square">
+                        <ShapedPinBadge
+                            imageUrl="/images/pin-photo.png"
+                            size={3}
+                            cameraDistance={5}
+                        />
                     </div>
                 </figure>
             </div>

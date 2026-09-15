@@ -77,9 +77,8 @@ export default function ExperienceSection() {
         }
 
         // 4. Each connector line — and the final "end" line — starts
-        //    collapsed at its logo (top) and grows downward as you scroll.
-        //    Scoped per-element so each one tracks its own scroll position
-        //    instead of every card fighting over one global animation.
+        //    collapsed at its logo (top) and draws once as its node enters.
+        //    Scoped per-element so each line keeps its own scroll trigger.
         gsap.utils
             .toArray<HTMLElement>(
                 ".timeline-connector, .timeline-connector-mobile, .timeline-end-line, .timeline-end-line-mobile",
@@ -96,12 +95,12 @@ export default function ExperienceSection() {
 
                 gsap.to(line, {
                     scaleY: 1,
-                    ease: "none",
+                    duration: 1,
+                    ease: "power2.out",
                     scrollTrigger: {
                         trigger: triggerEl,
                         start: "top center",
-                        end: "bottom 90%",
-                        scrub: true,
+                        once: true,
                     },
                 });
             });

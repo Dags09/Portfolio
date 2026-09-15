@@ -25,6 +25,15 @@ section {
     width: 100%;
 }
 
+.app-shell {
+    opacity: 0;
+}
+
+.app-shell.is-ready {
+    opacity: 1;
+    transition: opacity 180ms ease-out;
+}
+
 @theme {
     --font-sans: "Mona Sans", sans-serif;
     --color-white-50: #d9ecff;

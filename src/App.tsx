@@ -41,8 +41,31 @@ function LazyTechStack() {
 }
 
 function App() {
+    const [isReady, setIsReady] = useState(false);
+
+    useEffect(() => {
+        let cancelled = false;
+
+        const reveal = () => {
+            requestAnimationFrame(() => {
+                if (!cancelled) setIsReady(true);
+            });
+        };
+
+        if (document.readyState === "complete") {
+            reveal();
+        } else {
+            window.addEventListener("load", reveal, { once: true });
+        }
+
+        return () => {
+            cancelled = true;
+            window.removeEventListener("load", reveal);
+        };
+    }, []);
+
     return (
-        <>
+        <div className={`app-shell ${isReady ? "is-ready" : ""}`}>
             <NavBar />
             <Hero />
             <ShowcaseSection />
@@ -53,7 +76,7 @@ function App() {
             <CertificationSection />
             <ContactSection />
             <Footer />
-        </>
+        </div>
     );
 }
 
