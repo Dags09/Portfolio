@@ -65,7 +65,7 @@ export default function Hero() {
                     </div>
                 </header>
                 <figure>
-                    <div className="absolute xl:right-[2%] right-[20%] xl:top-[40%] top-[115%] -translate-y-1/2 xl:w-2xl w-[min(60vw,42rem)] aspect-square">
+                    <div className="absolute xl:right-[2%] right-[20%] xl:top-[40%] top-[90%] -translate-y-1/2 xl:w-2xl w-[min(60vw,42rem)] aspect-square">
                         <ShapedPinBadge
                             imageUrl="/images/pin-photo.png"
                             size={2.8}
