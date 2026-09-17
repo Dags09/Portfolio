@@ -1,9 +1,25 @@
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import TitleHeader from "../Components/TitleHeader";
 import { techStackIcons } from "../utils/constants";
 import TechIcon from "../Components/Models/TechLogos/TechIcon";
 export default function TechStack() {
+    const sectionRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(
+        () => {
+            gsap.fromTo(
+                sectionRef.current,
+                { y: 36, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
+            );
+        },
+        { scope: sectionRef },
+    );
+
     return (
-        <div className="flex-center section-padding">
+        <div ref={sectionRef} className="flex-center section-padding">
             <div className="w-full h-full md:px-10 px-5">
                 <TitleHeader
                     title=" My Preferred Tech Stack"

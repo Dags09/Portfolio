@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { FormEvent } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import TitleHeader from "../Components/TitleHeader";
@@ -14,10 +16,22 @@ interface FormState {
 const initialState: FormState = { name: "", email: "", message: "" };
 
 export default function ContactSection() {
+    const sectionRef = useRef<HTMLElement>(null);
     const [form, setForm] = useState<FormState>(initialState);
     const [errors, setErrors] = useState<Partial<FormState>>({});
     const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
         "idle",
+    );
+
+    useGSAP(
+        () => {
+            gsap.fromTo(
+                sectionRef.current,
+                { y: 36, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
+            );
+        },
+        { scope: sectionRef },
     );
 
     const handleChange = (
@@ -82,7 +96,11 @@ export default function ContactSection() {
     };
 
     return (
-        <section id="contact" className="flex-center section-padding">
+        <section
+            ref={sectionRef}
+            id="contact"
+            className="flex-center section-padding"
+        >
             <div className="w-full h-full md:px-10 px-5">
                 <TitleHeader
                     title="Contact"
