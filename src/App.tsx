@@ -33,7 +33,7 @@ function LazySection({ component: Component }: { component: ComponentType }) {
     }, []);
 
     return (
-        <div ref={ref} style={{ minHeight: 200 }}>
+        <div ref={ref} style={{ minHeight: visible ? undefined : 200 }}>
             {visible && (
                 <Suspense fallback={null}>
                     <Component />

@@ -26,7 +26,7 @@ export default function Footer() {
                         </a>
                     ))}
                 </div>
-                <p className="md:!text-left">
+                <p>
                     © {new Date().getFullYear()} Jewelle Vincent D. Atienza.
                     <br />
                     All rights reserved.

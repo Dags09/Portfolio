@@ -203,7 +203,7 @@ export const socialLinks = [
     },
     {
         name: "LinkedIn",
-        href: "https://linkedin.com/in/yourusername",
+        href: "https://www.linkedin.com/in/jewelle-vincent-atienza-aaa52a403/",
         icons: faLinkedin,
     },
     { name: "Email", href: `mailto:${CONTACT_EMAIL}`, icons: faEnvelope },
