@@ -3,7 +3,7 @@ import type { FormEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import TitleHeader from "../Components/TitleHeader";
-import { CONTACT_EMAIL } from "../utils/constants";
+import { CONTACT_EMAIL, WEB3FORMS_ACCESS_KEY } from "../utils/constants";
 
 interface FormState {
     name: string;
@@ -16,7 +16,9 @@ const initialState: FormState = { name: "", email: "", message: "" };
 export default function ContactSection() {
     const [form, setForm] = useState<FormState>(initialState);
     const [errors, setErrors] = useState<Partial<FormState>>({});
-    const [status, setStatus] = useState<"idle" | "sent">("idle");
+    const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+        "idle",
+    );
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -46,22 +48,38 @@ export default function ContactSection() {
         return Object.keys(nextErrors).length === 0;
     };
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (!validate()) return;
 
-        const subject = encodeURIComponent(
-            `Portfolio message from ${form.name}`,
-        );
-        const body = encodeURIComponent(
-            `${form.message}\n\n— ${form.name} (${form.email})`,
-        );
+        setStatus("sending");
 
-        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+        try {
+            const res = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    access_key: WEB3FORMS_ACCESS_KEY,
+                    subject: `Portfolio message from ${form.name}`,
+                    from_name: form.name,
+                    email: form.email,
+                    message: form.message,
+                    to: CONTACT_EMAIL,
+                }),
+            });
 
-        setStatus("sent");
-        setForm(initialState);
+            const data = await res.json();
+
+            if (data.success) {
+                setStatus("sent");
+                setForm(initialState);
+            } else {
+                setStatus("error");
+            }
+        } catch {
+            setStatus("error");
+        }
     };
 
     return (
@@ -135,11 +153,16 @@ export default function ContactSection() {
 
                                 <button
                                     type="submit"
-                                    className="cta-wrapper w-full"
+                                    disabled={status === "sending"}
+                                    className="cta-wrapper w-full disabled:opacity-60"
                                 >
                                     <div className="cta-button group w-full">
                                         <div className="bg-circle" />
-                                        <p className="text">Send Message</p>
+                                        <p className="text">
+                                            {status === "sending"
+                                                ? "Sending..."
+                                                : "Send Message"}
+                                        </p>
                                         <div className="arrow-wrapper">
                                             <FontAwesomeIcon
                                                 icon={faPaperPlane}
@@ -151,8 +174,15 @@ export default function ContactSection() {
 
                                 {status === "sent" && (
                                     <p className="text-white-50 text-sm text-center">
-                                        Your email app should be opening now —
-                                        thanks for reaching out!
+                                        Thanks for reaching out — I'll get back
+                                        to you soon!
+                                    </p>
+                                )}
+                                {status === "error" && (
+                                    <p className="text-red-400 text-sm text-center">
+                                        Something went wrong sending your
+                                        message. Please try again, or email me
+                                        directly at {CONTACT_EMAIL}.
                                     </p>
                                 )}
                             </form>

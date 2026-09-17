@@ -30,6 +30,8 @@ import {
 } from "react-icons/si";
 import type { TechModel } from "../Components/Models/TechLogos/TechIcon";
 
+const serviceId = import.meta.env.WEB3FORMS_ACCESS_KEY;
+
 export const words = [
     { text: "Ideas", icon: faLightbulb },
     { text: "Concepts", icon: faComments },
@@ -190,6 +192,8 @@ export const certifications = [
 ];
 
 export const CONTACT_EMAIL = "jewellevincentatienza09@gmail.com";
+
+export const WEB3FORMS_ACCESS_KEY = serviceId;
 
 export const socialLinks = [
     {
