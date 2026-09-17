@@ -12,7 +12,9 @@ export default function NavBar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
     return (
-        <header className={`navbar ${scrolled ? "scrolled" : "not-scrolled"}`}>
+        <header
+            className={`navbar ${scrolled ? "scrolled" : "not-scrolled"} bg-black`}
+        >
             <div className="inner">
                 <a className="logo" href="#hero">
                     Dagz

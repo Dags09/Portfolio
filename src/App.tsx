@@ -1,17 +1,20 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import type { ComponentType } from "react";
 import Hero from "./Sections/Hero";
-import ShowcaseSection from "./Sections/ShowcaseSection";
 import NavBar from "./Components/NavBar";
-import FeatureCardSection from "./Sections/FeatureCardSection";
-import LogoSlider from "./Components/LogoSlider";
-import ExperienceSection from "./Sections/ExperienceSection";
-import CertificationSection from "./Sections/CertificationSection";
-import ContactSection from "./Sections/Contactsection";
-import Footer from "./Sections/Footer";
 
+const ShowcaseSection = lazy(() => import("./Sections/ShowcaseSection"));
+const LogoSlider = lazy(() => import("./Components/LogoSlider"));
+const FeatureCardSection = lazy(() => import("./Sections/FeatureCardSection"));
+const ExperienceSection = lazy(() => import("./Sections/ExperienceSection"));
 const TechStack = lazy(() => import("./Sections/TechStack"));
+const CertificationSection = lazy(
+    () => import("./Sections/CertificationSection"),
+);
+const ContactSection = lazy(() => import("./Sections/Contactsection"));
+const Footer = lazy(() => import("./Sections/Footer"));
 
-function LazyTechStack() {
+function LazySection({ component: Component }: { component: ComponentType }) {
     const ref = useRef<HTMLDivElement>(null);
     const [visible, setVisible] = useState(false);
 
@@ -30,10 +33,10 @@ function LazyTechStack() {
     }, []);
 
     return (
-        <div ref={ref} style={{ minHeight: 400 }}>
+        <div ref={ref} style={{ minHeight: 200 }}>
             {visible && (
                 <Suspense fallback={null}>
-                    <TechStack />
+                    <Component />
                 </Suspense>
             )}
         </div>
@@ -68,14 +71,14 @@ function App() {
         <div className={`app-shell ${isReady ? "is-ready" : ""}`}>
             <NavBar />
             <Hero />
-            <ShowcaseSection />
-            <LogoSlider />
-            <FeatureCardSection />
-            <ExperienceSection />
-            <LazyTechStack />
-            <CertificationSection />
-            <ContactSection />
-            <Footer />
+            <LazySection component={ShowcaseSection} />
+            <LazySection component={LogoSlider} />
+            <LazySection component={FeatureCardSection} />
+            <LazySection component={ExperienceSection} />
+            <LazySection component={TechStack} />
+            <LazySection component={CertificationSection} />
+            <LazySection component={ContactSection} />
+            <LazySection component={Footer} />
         </div>
     );
 }
