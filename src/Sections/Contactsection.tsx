@@ -141,7 +141,7 @@ export default function ContactSection() {
                                         rows={5}
                                         value={form.message}
                                         onChange={handleChange}
-                                        placeholder="Tell me something"
+                                        placeholder="Tell me about your project..."
                                     />
                                     {errors.message && (
                                         <p className="text-red-400 text-sm mt-2">
