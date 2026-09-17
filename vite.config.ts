@@ -5,6 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [tailwindcss(), react()],
+    envPrefix: ["VITE_", "FORM_"],
     // base: process.env.VITE_BASE_PATH || "/Dags09/Portfolio",
     base: "/",
 });
