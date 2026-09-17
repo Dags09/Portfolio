@@ -5,8 +5,6 @@ export default function Footer() {
     return (
         <footer className="footer">
             <div className="footer-container">
-                <p className="md:!text-right">Terms & Conditions</p>
-
                 <div className="socials">
                     {socialLinks.map(({ name, href, icons }) => (
                         <a
