@@ -65,7 +65,6 @@ export default function ContactSection() {
                     from_name: form.name,
                     email: form.email,
                     message: form.message,
-                    to: CONTACT_EMAIL,
                 }),
             });
 
