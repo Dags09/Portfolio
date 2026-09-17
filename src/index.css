@@ -298,7 +298,7 @@ section {
     }
 
     .timeline-connector-mobile {
-        @apply block xl:hidden absolute top-20 sm:top-40 left-1/2 -translate-x-1/2 w-1 h-[calc(100%+2.5rem)];
+        @apply block xl:hidden absolute top-20 sm:top-10 left-1/2 -translate-x-1/2 w-1 h-[calc(100%+2.5rem)];
         background: linear-gradient(
             to bottom,
             #ff0000 0%,
