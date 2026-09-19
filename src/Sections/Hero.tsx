@@ -2,9 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { words } from "../utils/constants";
 import Button from "../Components/button";
 import ShapedPinBadge from "../Components/Models/PinBadge/ShapedPinBadge";
+import HeroBackground from "../Components/HeroBackground";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import AnimatedCounter from "../Components/AnimatedCounter";
+
 export default function Hero() {
     useGSAP(() => {
         gsap.fromTo(
@@ -23,11 +24,9 @@ export default function Hero() {
         );
     });
     return (
-        <section id="hero" className="relative overflow-hidden">
-            <div className="absolute top-0 left-0 z-10">
-                <img src="/images/bg.jpg" alt="background" />
-            </div>
-            <div className="hero-layout">
+        <section id="hero" className="relative isolate overflow-hidden">
+            <HeroBackground />
+            <div className="hero-layout relative z-10">
                 <header className="flex flex-col justify-center md:w-full w-full md:px-20 px-5">
                     <div className="flex flex-col gap-7">
                         <div className="hero-text">
@@ -74,7 +73,6 @@ export default function Hero() {
                     </div>
                 </figure>
             </div>
-            <AnimatedCounter />
         </section>
     );
 }
