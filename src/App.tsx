@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import type { ComponentType } from "react";
 import Hero from "./Sections/Hero";
 import NavBar from "./Components/NavBar";
+import HeroBackground from "./Components/HeroBackground";
 
 const ShowcaseSection = lazy(() => import("./Sections/ShowcaseSection"));
 const LogoSlider = lazy(() => import("./Components/LogoSlider"));
@@ -68,7 +69,10 @@ function App() {
     }, []);
 
     return (
-        <div className={`app-shell ${isReady ? "is-ready" : ""}`}>
+        <div
+            className={`app-shell relative isolate ${isReady ? "is-ready" : ""}`}
+        >
+            <HeroBackground />
             <NavBar />
             <Hero />
             <LazySection component={ShowcaseSection} />

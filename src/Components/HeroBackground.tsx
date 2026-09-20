@@ -135,7 +135,7 @@ export default function HeroBackground() {
     return (
         <div
             ref={rootRef}
-            className="absolute inset-0 -z-10 overflow-hidden pointer-events-none"
+            className="fixed inset-0 -z-10 overflow-hidden pointer-events-none"
             aria-hidden="true"
         >
             <div className="absolute inset-0 bg-[#0a0a0b]" />
