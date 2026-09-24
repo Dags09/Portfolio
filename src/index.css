@@ -201,7 +201,19 @@ section {
         }
 
         .project-list-wrapper {
-            @apply flex md:flex-row flex-col xl:flex-col gap-10 xl:w-[40%];
+            @apply flex md:flex-row flex-col xl:flex-col gap-10 xl:w-[40%] h-full;
+
+            .project {
+                @apply flex flex-col gap-4 h-full;
+            }
+
+            .project-info {
+                @apply flex flex-col justify-between gap-4;
+            }
+
+            .project-copy {
+                @apply flex flex-col gap-3 w-full;
+            }
 
             .image-wrapper {
                 @apply xl:h-[37vh] md:h-52 lg:h-72 h-64 relative rounded-xl xl:px-5 2xl:px-12 py-0;
@@ -213,6 +225,82 @@ section {
 
             h2 {
                 @apply text-lg md:text-xl lg:text-2xl font-semibold mt-5;
+            }
+
+            .demo-link {
+                @apply mt-auto self-end text-right;
+            }
+
+            .more-project-wrapper {
+                @apply flex-1 flex items-center justify-center min-h-24;
+            }
+        }
+    }
+
+    .more-project-btn {
+        @apply relative inline-flex items-center justify-between gap-6
+        pl-8 pr-2 py-2 rounded-full min-w-[220px] md:min-w-[260px]
+        bg-[#d4af37] cursor-pointer overflow-hidden
+        transition-all duration-300 hover:brightness-110
+        hover:shadow-[0_0_28px_rgba(212,175,55,0.35)];
+
+        .label {
+            @apply text-sm md:text-base font-semibold text-black whitespace-nowrap;
+        }
+
+        .icon-circle {
+            @apply flex-none flex items-center justify-center size-9 md:size-10 rounded-full
+            bg-black-100 text-[#d4af37] transition-all duration-300
+            group-hover:translate-x-0.5 group-hover:-translate-y-0.5;
+        }
+    }
+
+    .projects-page {
+        @apply w-full mt-32 md:mt-40 px-5 md:px-20 pb-24;
+
+        .back-link {
+            @apply inline-flex items-center gap-2 text-sm md:text-base font-medium text-white-50
+            transition-colors duration-300 hover:text-white;
+        }
+
+        .projects-grid {
+            @apply grid grid-cols-1 md:grid-cols-2 gap-8 mt-16;
+        }
+
+        .project-tile {
+            @apply border border-black-50 bg-black-100 rounded-xl overflow-hidden flex flex-col;
+
+            .tile-image {
+                @apply h-56 md:h-64 relative bg-black-200;
+
+                img {
+                    @apply w-full h-full object-cover absolute inset-0;
+                }
+            }
+
+            .tile-body {
+                @apply p-6 md:p-8 flex flex-col gap-4 flex-1;
+
+                h3 {
+                    @apply text-xl md:text-2xl font-semibold;
+                }
+
+                p {
+                    @apply text-sm md:text-base leading-relaxed;
+                }
+
+                .tile-tags {
+                    @apply flex flex-wrap gap-2;
+
+                    span {
+                        @apply text-xs px-3 py-1 rounded-full border border-black-50 text-white-50;
+                    }
+                }
+
+                .tile-link {
+                    @apply mt-auto self-start inline-flex items-center gap-2 text-sm md:text-base
+                    font-semibold text-white-50 transition-colors duration-300 hover:text-white;
+                }
             }
         }
     }

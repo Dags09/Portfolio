@@ -4,6 +4,7 @@ import Hero from "./Sections/Hero";
 import NavBar from "./Components/NavBar";
 import HeroBackground from "./Components/HeroBackground";
 
+const ProjectsPage = lazy(() => import("./Sections/ProjectsPage"));
 const ShowcaseSection = lazy(() => import("./Sections/ShowcaseSection"));
 const LogoSlider = lazy(() => import("./Components/LogoSlider"));
 const FeatureCardSection = lazy(() => import("./Sections/FeatureCardSection"));
@@ -46,6 +47,18 @@ function LazySection({ component: Component }: { component: ComponentType }) {
 
 function App() {
     const [isReady, setIsReady] = useState(false);
+    const [isProjectsPage, setIsProjectsPage] = useState(
+        () => window.location.hash === "#projects",
+    );
+
+    useEffect(() => {
+        const handleHashChange = () => {
+            setIsProjectsPage(window.location.hash === "#projects");
+        };
+        window.addEventListener("hashchange", handleHashChange);
+        return () =>
+            window.removeEventListener("hashchange", handleHashChange);
+    }, []);
 
     useEffect(() => {
         let cancelled = false;
@@ -74,14 +87,22 @@ function App() {
         >
             <HeroBackground />
             <NavBar />
-            <Hero />
-            <LazySection component={ShowcaseSection} />
-            <LazySection component={LogoSlider} />
-            <LazySection component={FeatureCardSection} />
-            <LazySection component={ExperienceSection} />
-            <LazySection component={TechStack} />
-            <LazySection component={CertificationSection} />
-            <LazySection component={ContactSection} />
+            {isProjectsPage ? (
+                <Suspense fallback={null}>
+                    <ProjectsPage />
+                </Suspense>
+            ) : (
+                <>
+                    <Hero />
+                    <LazySection component={ShowcaseSection} />
+                    <LazySection component={LogoSlider} />
+                    <LazySection component={FeatureCardSection} />
+                    <LazySection component={ExperienceSection} />
+                    <LazySection component={TechStack} />
+                    <LazySection component={CertificationSection} />
+                    <LazySection component={ContactSection} />
+                </>
+            )}
             <LazySection component={Footer} />
         </div>
     );

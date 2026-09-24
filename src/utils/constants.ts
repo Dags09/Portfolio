@@ -11,6 +11,7 @@ import {
     faLayerGroup,
     faCertificate,
     faEnvelope,
+    faArrowUpRightFromSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import {
     faGithub,
@@ -44,6 +45,37 @@ export const counterItems = [
     { value: 6, suffix: "+", label: "Technologies Used" },
     { value: 500, suffix: "+", label: "Hours of Coding" },
     { value: 1, suffix: "", label: "Hackathons Joined" },
+];
+
+export const projects = [
+    {
+        title: "BYM Order Pro Digital Platform",
+        description:
+            "A comprehensive e-commerce and order management tool built to help store owners streamline restocking, and manage supplier transactions digitally in one unified dashboard.",
+        image: "/images/bym_project.png",
+        tags: ["React", "Node.js", "TypeScript", "Tailwind CSS"],
+        demoLink: "#",
+        icon: faArrowUpRightFromSquare,
+    },
+    {
+        title: "Cockpit Management System",
+        description:
+            "A web-based system that streamlines cockpit operations, including registration, scheduling, betting, rentals, and income management.",
+        image: "/images/cms_project.png",
+        tags: ["React", "CSS", "Node.js", "JavaScript"],
+        demoLink: "https://sabonghub.vercel.app/",
+        icon: faArrowUpRightFromSquare,
+    },
+    // Add more projects here as you build them — each card on the
+    // Projects page is generated from this list automatically.
+    // {
+    //     title: "Project Name",
+    //     description: "A short description of the project.",
+    //     image: "/images/placeholder_image.jpg",
+    //     tags: ["Tech", "Stack"],
+    //     demoLink: "#",
+    //     icon: faArrowUpRightFromSquare,
+    // },
 ];
 
 export const navLinks = [

@@ -2,6 +2,8 @@ import { useRef } from "react";
 import { gsap } from "gsap/gsap-core";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import AnimatedCounter from "../Components/AnimatedCounter";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -9,13 +11,13 @@ export default function ShowcaseSection() {
     const sectionRef = useRef(null);
     const project1Ref = useRef(null);
     const project2Ref = useRef(null);
-    const project3Ref = useRef(null);
+    // const project3Ref = useRef(null);
 
     useGSAP(() => {
         const projects = [
             project1Ref.current,
             project2Ref.current,
-            project3Ref.current,
+            // project3Ref.current,
         ];
         projects.forEach((card, index) => {
             gsap.fromTo(
@@ -55,7 +57,10 @@ export default function ShowcaseSection() {
                             className="first-project-wrapper"
                         >
                             <div className="image-wrapper">
-                                <img src="/images/project1.png" alt="Order" />
+                                <img
+                                    src="/images/bym_project.png"
+                                    alt="Order"
+                                />
                             </div>
                             <div className="text-content">
                                 <h2>BYM Order Pro Digital Platform</h2>
@@ -79,20 +84,23 @@ export default function ShowcaseSection() {
                             <div ref={project2Ref} className="project">
                                 <div className="image-wrapper bg-[#ffefeb]">
                                     <img
-                                        src="/images/placeholder_image.jpg"
+                                        src="/images/cms_project.png"
                                         alt="Project preview"
                                     />
                                 </div>
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <h2>Project Title</h2>
+                                <div className="project-info">
+                                    <div className="project-copy">
+                                        <h2>Cockpit Management System</h2>
                                         <p className="text-white-50">
-                                            Project Details
+                                            A web-based system that streamlines
+                                            cockpit operations, including
+                                            registration, scheduling, betting,
+                                            rentals, and income management.
                                         </p>
                                     </div>
                                     <a
-                                        href="#"
-                                        className="group relative inline-block text-white-50 font-semibold hover:text-white transition-colors duration-300 whitespace-nowrap"
+                                        href="https://sabonghub.vercel.app/"
+                                        className="demo-link group relative inline-block text-white-50 font-semibold hover:text-white transition-colors duration-300 whitespace-nowrap p-1"
                                     >
                                         <span>Demo Project</span>
                                         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
@@ -100,28 +108,19 @@ export default function ShowcaseSection() {
                                 </div>
                             </div>
 
-                            <div ref={project3Ref} className="project">
-                                <div className="image-wrapper bg-[#ffe7eb]">
-                                    <img
-                                        src="/images/placeholder_image.jpg"
-                                        alt="Project preview"
-                                    />
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <h2>Project Title</h2>
-                                        <p className="text-white-50">
-                                            Project Details
-                                        </p>
-                                    </div>
-                                    <a
-                                        href="#"
-                                        className="group relative inline-block text-white-50 font-semibold hover:text-white transition-colors duration-300 whitespace-nowrap"
-                                    >
-                                        <span>Demo Project</span>
-                                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-                                    </a>
-                                </div>
+                            <div className="more-project-wrapper">
+                                <a
+                                    href="#projects"
+                                    className="more-project-btn group"
+                                >
+                                    <span className="label">More Projects</span>
+                                    <span className="icon-circle">
+                                        <FontAwesomeIcon
+                                            icon={faArrowRight}
+                                            className="size-4"
+                                        />
+                                    </span>
+                                </a>
                             </div>
                         </div>
                     </div>
