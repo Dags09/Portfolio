@@ -56,8 +56,7 @@ function App() {
             setIsProjectsPage(window.location.hash === "#projects");
         };
         window.addEventListener("hashchange", handleHashChange);
-        return () =>
-            window.removeEventListener("hashchange", handleHashChange);
+        return () => window.removeEventListener("hashchange", handleHashChange);
     }, []);
 
     useEffect(() => {
@@ -86,7 +85,7 @@ function App() {
             className={`app-shell relative isolate ${isReady ? "is-ready" : ""}`}
         >
             <HeroBackground />
-            <NavBar />
+            {!isProjectsPage && <NavBar />}
             {isProjectsPage ? (
                 <Suspense fallback={null}>
                     <ProjectsPage />

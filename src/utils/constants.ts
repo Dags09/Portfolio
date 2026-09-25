@@ -54,7 +54,7 @@ export const projects = [
             "A comprehensive e-commerce and order management tool built to help store owners streamline restocking, and manage supplier transactions digitally in one unified dashboard.",
         image: "/images/bym_project.png",
         tags: ["React", "Node.js", "TypeScript", "Tailwind CSS"],
-        demoLink: "#",
+        demoLink: "https://bym-order-pro-digital-platform.vercel.app",
         icon: faArrowUpRightFromSquare,
     },
     {

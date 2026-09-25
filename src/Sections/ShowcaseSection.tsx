@@ -11,12 +11,14 @@ export default function ShowcaseSection() {
     const sectionRef = useRef(null);
     const project1Ref = useRef(null);
     const project2Ref = useRef(null);
+    const moreProjectRef = useRef(null);
     // const project3Ref = useRef(null);
 
     useGSAP(() => {
         const projects = [
             project1Ref.current,
             project2Ref.current,
+            moreProjectRef.current,
             // project3Ref.current,
         ];
         projects.forEach((card, index) => {
@@ -72,7 +74,7 @@ export default function ShowcaseSection() {
                                     dashboard
                                 </p>
                                 <a
-                                    href="#"
+                                    href="https://bym-order-pro-digital-platform.vercel.app"
                                     className="group relative inline-block text-white-50 font-semibold hover:text-white transition-colors duration-300 whitespace-nowrap"
                                 >
                                     <span>Demo Project</span>
@@ -82,7 +84,7 @@ export default function ShowcaseSection() {
                         </div>
                         <div className="project-list-wrapper overflow-hidden">
                             <div ref={project2Ref} className="project">
-                                <div className="image-wrapper bg-[#ffefeb]">
+                                <div className="image-wrapper bg-[#000000]">
                                     <img
                                         src="/images/cms_project.png"
                                         alt="Project preview"
@@ -100,7 +102,7 @@ export default function ShowcaseSection() {
                                     </div>
                                     <a
                                         href="https://sabonghub.vercel.app/"
-                                        className="demo-link group relative inline-block text-white-50 font-semibold hover:text-white transition-colors duration-300 whitespace-nowrap p-1"
+                                        className="demo-link group relative inline-block text-white-50 font-semibold hover:text-white transition-colors duration-300 whitespace-nowrap"
                                     >
                                         <span>Demo Project</span>
                                         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
@@ -108,7 +110,10 @@ export default function ShowcaseSection() {
                                 </div>
                             </div>
 
-                            <div className="more-project-wrapper">
+                            <div
+                                ref={moreProjectRef}
+                                className="more-project-wrapper"
+                            >
                                 <a
                                     href="#projects"
                                     className="more-project-btn group"

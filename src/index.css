@@ -228,7 +228,7 @@ section {
             }
 
             .demo-link {
-                @apply mt-auto self-end text-right;
+                @apply mt-auto self-start text-left;
             }
 
             .more-project-wrapper {
@@ -256,7 +256,7 @@ section {
     }
 
     .projects-page {
-        @apply w-full mt-32 md:mt-40 px-5 md:px-20 pb-24;
+        @apply w-full mt-10 md:mt-15 px-5 md:px-20 pb-24;
 
         .back-link {
             @apply inline-flex items-center gap-2 text-sm md:text-base font-medium text-white-50
