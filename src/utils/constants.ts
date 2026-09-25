@@ -230,7 +230,7 @@ export const WEB3FORMS_ACCESS_KEY = serviceId;
 export const socialLinks = [
     {
         name: "GitHub",
-        href: "https://github.com/yourusername",
+        href: "https://github.com/Dags09",
         icons: faGithub,
     },
     {
