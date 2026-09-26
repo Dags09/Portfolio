@@ -41,10 +41,10 @@ export const words = [
 ];
 
 export const counterItems = [
-    { value: 2, suffix: "", label: "Completed Projects" },
+    { value: 1, suffix: "", label: "Completed Projects" },
     { value: 6, suffix: "+", label: "Technologies Used" },
     { value: 500, suffix: "+", label: "Hours of Coding" },
-    { value: 1, suffix: "", label: "Hackathons Joined" },
+    { value: 1, suffix: "", label: "Ongoing Build" },
 ];
 
 export const projects = [
