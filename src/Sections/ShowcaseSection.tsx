@@ -65,6 +65,15 @@ export default function ShowcaseSection() {
                                 />
                             </div>
                             <div className="text-content">
+                                <div className="badges">
+                                    <span className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full bg-[#d4af37]/15 text-[#d4af37] border border-[#d4af37]/40">
+                                        <span className="relative flex size-1.5">
+                                            <span className="absolute inline-flex h-full w-full rounded-full bg-[#d4af37] opacity-75 animate-ping" />
+                                            <span className="relative inline-flex rounded-full size-1.5 bg-[#d4af37]" />
+                                        </span>
+                                        Ongoing Build
+                                    </span>
+                                </div>
                                 <h2>BYM Order Pro Digital Platform</h2>
                                 <p className="text-white-50 md:text-xl">
                                     A comprehensive e-commerce and order
