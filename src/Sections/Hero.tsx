@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { words } from "../utils/constants";
 import Button from "../Components/button";
 import ShapedPinBadge from "../Components/Models/PinBadge/ShapedPinBadge";
-import HeroBackground from "../Components/HeroBackground";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -25,7 +24,6 @@ export default function Hero() {
     });
     return (
         <section id="hero" className="relative isolate overflow-hidden">
-            <HeroBackground />
             <div className="hero-layout relative z-10">
                 <header className="flex flex-col justify-center md:w-full w-full md:px-20 px-5">
                     <div className="flex flex-col gap-7">

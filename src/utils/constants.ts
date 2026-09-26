@@ -31,7 +31,7 @@ import {
 } from "react-icons/si";
 import type { TechModel } from "../Components/Models/TechLogos/TechIcon";
 
-const serviceId = import.meta.env.FORM_WEB3FORMS_ACCESS_KEY;
+const serviceId = import.meta.env.VITE_FORM_WEB3FORMS_ACCESS_KEY;
 
 export const words = [
     { text: "Ideas", icon: faLightbulb },
