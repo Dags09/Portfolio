@@ -1,5 +1,4 @@
 import { useState } from "react";
-import type { MouseEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { socialLinks, CONTACT_EMAIL } from "../utils/constants";
@@ -13,7 +12,7 @@ export default function Footer() {
     // showing a brief confirmation) guarantees the click always does
     // *something*, while the mailto: link still fires normally for anyone
     // who does have a mail app set up.
-    const handleEmailClick = async (e: MouseEvent<HTMLAnchorElement>) => {
+    const handleEmailClick = async () => {
         try {
             await navigator.clipboard.writeText(CONTACT_EMAIL);
             setCopied(true);
