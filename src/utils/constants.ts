@@ -17,6 +17,7 @@ import {
     faGithub,
     faLinkedin,
     faFacebook,
+    faSquareJs,
 } from "@fortawesome/free-brands-svg-icons";
 
 import {
@@ -220,6 +221,13 @@ export const certifications = [
         title: "BasePH - Hackaton",
         issuer: "Base Build MIMAROPA - MarSu",
         image: "/images/BasePH-CertificateOfParticipation.png",
+    },
+
+    {
+        icon: faSquareJs,
+        title: "JavaScript Essentials 1",
+        issuer: "CISCO Networking Academy",
+        image: "/images/JS_Essentials1.jpg",
     },
 ];
 
