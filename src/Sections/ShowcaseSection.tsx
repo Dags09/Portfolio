@@ -60,7 +60,7 @@ export default function ShowcaseSection() {
                         >
                             <div className="image-wrapper">
                                 <img
-                                    src="/images/bym_project.png"
+                                    src="/images/bym_project.webp"
                                     alt="Order"
                                 />
                             </div>
@@ -95,7 +95,7 @@ export default function ShowcaseSection() {
                             <div ref={project2Ref} className="project">
                                 <div className="image-wrapper bg-[#000000]">
                                     <img
-                                        src="/images/cms_project.png"
+                                        src="/images/cms_project.webp"
                                         alt="Project preview"
                                     />
                                 </div>
