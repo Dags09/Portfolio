@@ -1,11 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faXmark } from "@fortawesome/free-solid-svg-icons";
 import TitleHeader from "../Components/TitleHeader";
 import { certifications } from "../utils/constants";
 
 export default function CertificationSection() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+    const [preview, setPreview] = useState<{ src: string; alt: string } | null>(
+        null,
+    );
+
+    // Close on Escape and lock page scroll while the preview is open
+    useEffect(() => {
+        if (!preview) return;
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === "Escape") setPreview(null);
+        };
+        const prevOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        window.addEventListener("keydown", onKey);
+        return () => {
+            window.removeEventListener("keydown", onKey);
+            document.body.style.overflow = prevOverflow;
+        };
+    }, [preview]);
 
     const toggleCard = (index: number) => {
         setOpenIndex((prev) => (prev === index ? null : index));
@@ -71,7 +91,14 @@ export default function CertificationSection() {
                                             <img
                                                 src={cert.image}
                                                 alt={cert.title}
-                                                className="w-full rounded-lg border border-black-50"
+                                                onClick={() =>
+                                                    setPreview({
+                                                        src: cert.image,
+                                                        alt: cert.title,
+                                                    })
+                                                }
+                                                title="Click to view full size"
+                                                className="w-full rounded-lg border border-black-50 cursor-zoom-in"
                                             />
                                         </div>
                                     </div>
@@ -81,6 +108,33 @@ export default function CertificationSection() {
                     })}
                 </div>
             </div>
+
+            {preview &&
+                createPortal(
+                    <div
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label={preview.alt}
+                        onClick={() => setPreview(null)}
+                        className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-10 bg-black/60 backdrop-blur-md cursor-zoom-out"
+                    >
+                        <button
+                            type="button"
+                            aria-label="Close preview"
+                            onClick={() => setPreview(null)}
+                            className="absolute top-4 right-4 md:top-6 md:right-6 size-11 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/25 text-white text-xl cursor-pointer transition-colors"
+                        >
+                            <FontAwesomeIcon icon={faXmark} />
+                        </button>
+                        <img
+                            src={preview.src}
+                            alt={preview.alt}
+                            onClick={(e) => e.stopPropagation()}
+                            className="max-w-full max-h-full object-contain rounded-lg shadow-2xl cursor-default"
+                        />
+                    </div>,
+                    document.body,
+                )}
         </section>
     );
 }

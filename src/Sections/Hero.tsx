@@ -1,7 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { words } from "../utils/constants";
 import Button from "../Components/button";
-import ShapedPinBadge from "../Components/Models/PinBadge/ShapedPinBadge";
+import { lazy, Suspense } from "react";
+
+// three.js + the badge load as a separate chunk so the hero text paints first
+const ShapedPinBadge = lazy(
+    () => import("../Components/Models/PinBadge/ShapedPinBadge"),
+);
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -63,11 +68,13 @@ export default function Hero() {
                 </header>
                 <figure>
                     <div className="absolute xl:right-[2%] right-[20%] xl:top-[40%] top-[90%] -translate-y-1/2 xl:w-2xl w-[min(60vw,42rem)] aspect-square">
-                        <ShapedPinBadge
-                            imageUrl="/images/pin-photo.png"
-                            size={2.8}
-                            cameraDistance={5}
-                        />
+                        <Suspense fallback={null}>
+                            <ShapedPinBadge
+                                imageUrl="/images/pin-photo.webp"
+                                size={2.8}
+                                cameraDistance={5}
+                            />
+                        </Suspense>
                     </div>
                 </figure>
             </div>

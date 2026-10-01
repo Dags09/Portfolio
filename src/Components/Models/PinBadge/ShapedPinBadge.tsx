@@ -1,4 +1,4 @@
-import { Suspense, useMemo, useRef } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, OrbitControls, useTexture } from "@react-three/drei";
 import * as THREE from "three";
@@ -348,29 +348,59 @@ function Badge({
     );
 }
 
+// Self-hosted copy of drei's "studio" HDRI (was fetched from raw.githack.com on every visit)
+const STUDIO_HDR = "/hdri/studio_small_03_1k.hdr";
+
 export default function ShapedPinBadge({
     cameraDistance = 6,
     fov = 40,
     ...badgeProps
 }: ShapedPinBadgeProps) {
+    // Only render frames while the badge is on screen, so it doesn't eat
+    // GPU time while the visitor is scrolling through other sections.
+    const wrapRef = useRef<HTMLDivElement>(null);
+    const [inView, setInView] = useState(true);
+
+    useEffect(() => {
+        const el = wrapRef.current;
+        if (!el) return;
+        const observer = new IntersectionObserver(
+            ([entry]) => setInView(entry.isIntersecting),
+            { rootMargin: "100px" },
+        );
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <Canvas camera={{ position: [0, 0, cameraDistance], fov }}>
-            <ambientLight intensity={0.6} />
-            <directionalLight position={[5, 5, 5]} intensity={1.2} castShadow />
-            <Environment preset="studio" />
+        <div ref={wrapRef} className="size-full">
+            <Canvas
+                camera={{ position: [0, 0, cameraDistance], fov }}
+                dpr={[1, 1.5]}
+                frameloop={inView ? "always" : "never"}
+                gl={{ powerPreference: "high-performance" }}
+            >
+                <ambientLight intensity={0.6} />
+                <directionalLight
+                    position={[5, 5, 5]}
+                    intensity={1.2}
+                    castShadow
+                />
+                <Environment files={STUDIO_HDR} />
 
-            <Suspense fallback={null}>
-                <Badge {...badgeProps} />
-            </Suspense>
+                <Suspense fallback={null}>
+                    <Badge {...badgeProps} />
+                </Suspense>
 
-            <OrbitControls
-                enableZoom={false}
-                enablePan={false}
-                minAzimuthAngle={-Math.PI / 4} // how far left
-                maxAzimuthAngle={Math.PI / 4} // how far right
-                minPolarAngle={Math.PI / 2 - Math.PI / 6} // how far up
-                maxPolarAngle={Math.PI / 2 + Math.PI / 6} // how far down
-            />
-        </Canvas>
+                <OrbitControls
+                    enableZoom={false}
+                    enablePan={false}
+                    minAzimuthAngle={-Math.PI / 4} // how far left
+                    maxAzimuthAngle={Math.PI / 4} // how far right
+                    minPolarAngle={Math.PI / 2 - Math.PI / 6} // how far up
+                    maxPolarAngle={Math.PI / 2 + Math.PI / 6} // how far down
+                />
+            </Canvas>
+        </div>
     );
 }

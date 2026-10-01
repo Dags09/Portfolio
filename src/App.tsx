@@ -61,6 +61,7 @@ function App() {
 
     useEffect(() => {
         let cancelled = false;
+        let timer: number | undefined;
 
         const reveal = () => {
             requestAnimationFrame(() => {
@@ -72,10 +73,14 @@ function App() {
             reveal();
         } else {
             window.addEventListener("load", reveal, { once: true });
+            // Safety net: never keep the page invisible for more than 1.5s
+            // waiting on slow third-party resources.
+            timer = window.setTimeout(reveal, 1500);
         }
 
         return () => {
             cancelled = true;
+            window.clearTimeout(timer);
             window.removeEventListener("load", reveal);
         };
     }, []);

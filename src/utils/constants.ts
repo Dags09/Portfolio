@@ -53,7 +53,7 @@ export const projects = [
         title: "BYM Order Pro Digital Platform",
         description:
             "A comprehensive e-commerce and order management tool built to help store owners streamline restocking, and manage supplier transactions digitally in one unified dashboard.",
-        image: "/images/bym_project.png",
+        image: "/images/bym_project.webp",
         tags: ["React", "Node.js", "TypeScript", "Tailwind CSS"],
         demoLink: "https://bym-order-pro-digital-platform.vercel.app",
         icon: faArrowUpRightFromSquare,
@@ -62,7 +62,7 @@ export const projects = [
         title: "Cockpit Management System",
         description:
             "A web-based system that streamlines cockpit operations, including registration, scheduling, betting, rentals, and income management.",
-        image: "/images/cms_project.png",
+        image: "/images/cms_project.webp",
         tags: ["React", "CSS", "Node.js", "JavaScript"],
         demoLink: "https://sabonghub.vercel.app/",
         icon: faArrowUpRightFromSquare,
@@ -144,12 +144,12 @@ export const logos = [
 export const experience = [
     {
         review: "His work validating REST APIs with Postman, verifying database integrity, and designing thorough edge-case tests proves he has truly applied his technical foundation to real-world systems. Going a step further to build automated test scripts in Playwright and working effectively alongside developers shows outstanding dedication and readiness for the industry. He has represented our program exceptionally well!",
-        reviewerImg: "/images/reviewer1.png",
+        reviewerImg: "/images/reviewer1.webp",
         reviewer: "Aldrin Requiz, MSIT",
         position: "Instructor 1",
         contact: "09603228853",
         company: "DOST-MIMAROPA",
-        logoPath: "/images/DOST-Mimaropa.png",
+        logoPath: "/images/DOST-Mimaropa.webp",
         title: "QA Intern Tester",
         date: "January 2026 - April 2026",
         responsibilities: [
@@ -214,20 +214,20 @@ export const certifications = [
         icon: faCertificate,
         title: "DOST-MIMAROPA Certificate",
         issuer: "Department of Science and Technology",
-        image: "/images/DOST-CertificateOfCompletion.jpg",
+        image: "/images/DOST-CertificateOfCompletion.webp",
     },
     {
         icon: faCertificate,
         title: "BasePH - Hackaton",
         issuer: "Base Build MIMAROPA - MarSu",
-        image: "/images/BasePH-CertificateOfParticipation.png",
+        image: "/images/BasePH-CertificateOfParticipation.webp",
     },
 
     {
         icon: faSquareJs,
         title: "JavaScript Essentials 1",
         issuer: "CISCO Networking Academy",
-        image: "/images/JS_Essentials1.jpg",
+        image: "/images/JS_Essentials1.webp",
     },
 ];
 
